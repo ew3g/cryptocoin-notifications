@@ -1,5 +1,7 @@
 COINS = ['BTC', 'BCH', 'ETH', 'DOGE'] #ADD COIN SYMBOL HERE TO WATCH
-DEFAULT_NOTIFICATION_MESSAGE = "%s (%s): U$: %.2f | 1 Hora: %s de %.2f%% | 1 Dia: %s de %.2f%%"
+DEFAULT_NOTIFICATION_MESSAGE = "%s (%s): U$: %.2f | 1 Hora: %s de %.2f%% | 1 Dia: %s de %.2f%% | %s"
+DEFAULT_TIMEZONE = 'America/Sao_Paulo'
+FORMAT_DATETIME = '%H:%M:%S %d-%m-%Y'
 JOB_RUNNING_MINUTES_INTERVAL = 120
 TEXT_HIGH = 'Alta'
 TEXT_LOW = 'Baixa'
