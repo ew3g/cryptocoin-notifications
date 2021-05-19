@@ -27,3 +27,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Thanking
 Source code for the [schedule](https://pypi.org/project/schedule/) lib. Credits to [Dan Bader](https://github.com/dbader).
+Source code for the [pytz](https://pypi.org/project/pytz/) lib. Credits to [Dan Bader](mailto:stuart@stuartbishop.net).
