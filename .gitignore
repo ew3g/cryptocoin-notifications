@@ -2,3 +2,4 @@
 venv/
 pyvenv.cfg
 tutorial
+secret.py
