@@ -9,7 +9,10 @@ pip install -r requirements.txt
 
 Edit the file [secret.py](https://github.com/lukeSkywallk/cryptocoin-notifications/blob/master/secret.py) and set the SECRET_COIN_MARKET_CAP with your [key](SECRET_COIN_MARKET_CAP) and set NOTIFY_RUN_URL with your channel [url](https://notify.run/)
 
-Edite the file [constants.py](https://github.com/lukeSkywallk/cryptocoin-notifications/blob/master/constants.py) and set the COINS to watch, also set the JOB_RUNNING_MINUTES_INTERVAL in minutes
+Edite the file [constants.py](https://github.com/lukeSkywallk/cryptocoin-notifications/blob/master/constants.py) 
+set the COINS to watch
+set the JOB_RUNNING_MINUTES_INTERVAL in minutes
+set the DEFAULT_TIMEZONE and FORMAT_DATETIME
 
 ## Usage
 
