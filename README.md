@@ -20,7 +20,9 @@ telegram-send --configure
 ```
 
 And follow the instructions
+    
     - Paste you bot token from Telegram
+    
     - Send the code/password on console to the bot
 
 Edit the file [secret.py](https://github.com/lukeSkywallk/cryptocoin-notifications/blob/master/secret.py) and set the SECRET_COIN_MARKET_CAP with your [key](SECRET_COIN_MARKET_CAP)
