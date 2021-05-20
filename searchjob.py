@@ -1,11 +1,12 @@
 import coinmarket
 import constants
-from datetime import datetime, timezone
-import notifyrun
-import pytz
+from datetime import date, datetime
+import dateutils
+import telegram_send
 
 def job():
-  print('Rodando em: %s' %(datetime.now()))
+  print('Rodando em: %s' %(dateutils
+    .get_now_datetime_formatted(constants.DEFAULT_TIMEZONE, constants.FORMAT_DATETIME)))
 
   response_coins = coinmarket.get_data_coins_list()
 
@@ -31,13 +32,13 @@ def job():
 
       if (change_one_day <= constants.THRESHOLD_DROP_ONE_DAY or change_one_hour <= constants.THRESHOLD_DROP_ONE_HOUR):
 
-        now_utc_time = datetime.now(timezone.utc)
-        default_timezone = pytz.timezone(constants.DEFAULT_TIMEZONE)
-        now_time_formatted = now_utc_time.astimezone(default_timezone).strftime(constants.FORMAT_DATETIME)
+        
 
         message = constants.DEFAULT_NOTIFICATION_MESSAGE %(coin_name, coin_symbol, coin_price,
           dynamic_text_change_one_hour, change_one_hour, dynamic_text_change_one_day,
-          change_one_day, now_time_formatted)
+          change_one_day, dateutils.get_now_datetime_formatted(constants.DEFAULT_TIMEZONE, constants.FORMAT_DATETIME))
 
-        notifyrun.notify(message)
+        telegram_send.send(messages=[message])
         print(message)
+
+job()
