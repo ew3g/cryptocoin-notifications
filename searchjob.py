@@ -40,5 +40,3 @@ def job():
 
         telegram_send.send(messages=[message])
         print(message)
-
-job()
