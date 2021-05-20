@@ -1,8 +1,8 @@
 import coinmarket
 import constants
-from datetime import datetime
+from datetime import datetime, timezone
 import notifyrun
-from pytz import timezone
+import pytz
 
 def job():
   print('Rodando em: %s' %(datetime.now()))
@@ -31,12 +31,13 @@ def job():
 
       if (change_one_day <= constants.THRESHOLD_DROP_ONE_DAY or change_one_hour <= constants.THRESHOLD_DROP_ONE_HOUR):
 
-        default_timezone = timezone(constants.DEFAULT_TIMEZONE)
-        now = default_timezone.localize(datetime.now()).strftime(constants.FORMAT_DATETIME)
+        now_utc_time = datetime.now(timezone.utc)
+        default_timezone = pytz.timezone(constants.DEFAULT_TIMEZONE)
+        now_time_formatted = now_utc_time.astimezone(default_timezone).strftime(constants.FORMAT_DATETIME)
 
         message = constants.DEFAULT_NOTIFICATION_MESSAGE %(coin_name, coin_symbol, coin_price,
-          dynamic_text_change_one_hour, change_one_hour, dynamic_text_change_one_day, 
-          change_one_day, now)
-        
+          dynamic_text_change_one_hour, change_one_hour, dynamic_text_change_one_day,
+          change_one_day, now_time_formatted)
+
         notifyrun.notify(message)
         print(message)
