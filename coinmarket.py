@@ -2,9 +2,6 @@ import requester
 import secret
 
 class Util:
-    def default_header_price_coins():
-        return 'oi'
-
     default_header = {
         'Accepts': 'application/json',
         'X-CMC_PRO_API_KEY': secret.SECRET_COIN_MARKET_CAP,
