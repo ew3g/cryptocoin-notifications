@@ -32,8 +32,6 @@ def job():
 
       if (change_one_day <= constants.THRESHOLD_DROP_ONE_DAY or change_one_hour <= constants.THRESHOLD_DROP_ONE_HOUR):
 
-        
-
         message = constants.DEFAULT_NOTIFICATION_MESSAGE %(coin_name, coin_symbol, coin_price,
           dynamic_text_change_one_hour, change_one_hour, dynamic_text_change_one_day,
           change_one_day, dateutils.get_now_datetime_formatted(constants.DEFAULT_TIMEZONE, constants.FORMAT_DATETIME))
