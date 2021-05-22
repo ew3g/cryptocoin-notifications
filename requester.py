@@ -4,7 +4,6 @@ import json
 
 from requests.sessions import session
 
-
 def get_request(url, headers=None, params=None):
     try:
         session = Session()
