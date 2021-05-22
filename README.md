@@ -35,8 +35,6 @@ Edit the file [constants.py](https://github.com/lukeSkywallk/cryptocoin-notifica
 python run.py
 ```
 
-After running the script, go your notify.run channel and subscribe to receive the updates
-
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
