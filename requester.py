@@ -2,22 +2,22 @@ from requests import Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 
-from requests.sessions import session
 
 def get_request(url, headers=None, params=None):
     try:
-        session = Session()
+        session_request = Session()
         if headers:
-            session.headers.update(headers)
-        
-        response = session.get(url, params=params)
+            session_request.headers.update(headers)
+
+        response = session_request.get(url, params=params)
         return json.loads(response.text.encode('ascii', 'ignore'))
     except (ConnectionError, Timeout, TooManyRedirects) as e:
-      print(e)
+        print(e)
+
 
 def post_request(url, headers=None, data=None):
     try:
-        session = Session()
-        session.post(url, data=data)
+        session_request = Session()
+        session_request.post(url, data=data)
     except (ConnectionError, Timeout, TooManyRedirects) as e:
-      print(e)
+        print(e)

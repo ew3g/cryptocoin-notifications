@@ -1,5 +1,6 @@
 # created by virtualenv automatically
 venv/
+.vscode/
 __pycache__
 pyvenv.cfg
 secret.py
