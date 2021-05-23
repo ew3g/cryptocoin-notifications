@@ -28,8 +28,8 @@ def job():
                                             ['threshold_alert_drop_one_day'])
 
             threshold_alert_drop_one_hour = (config
-                                            .config_file['constants']
-                                            ['threshold_alert_drop_one_hour'])
+                                             .config_file['constants']
+                                             ['threshold_alert_drop_one_hour'])
 
             if (change_one_day <= threshold_alert_drop_one_day
                     or change_one_hour <= threshold_alert_drop_one_hour):
