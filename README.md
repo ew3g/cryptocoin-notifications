@@ -6,6 +6,7 @@ Use package manager [pip](https://pip.pypa.io/en/stable/) to install all needed 
 ```bash
 pip install -r requirements.txt
 ```
+Create an API KEY on (CoinMarketCap)[https://coinmarketcap.com/api/]
 
 Create a bot on Telegram, simply by talking to [BotFather](https://core.telegram.org/bots)
 Save the received token
@@ -25,9 +26,7 @@ And follow the instructions
     
     - Send the code/password on console to the bot
 
-Edit the file [secret.py](https://github.com/lukeSkywallk/cryptocoin-notifications/blob/master/secret.py) and set the SECRET_COIN_MARKET_CAP with your [key](SECRET_COIN_MARKET_CAP)
-
-Edit the file [constants.py](https://github.com/lukeSkywallk/cryptocoin-notifications/blob/master/constants.py) and set the COINS to watch, the JOB_RUNNING_MINUTES_INTERVAL in minutes, the DEFAULT_TIMEZONE and FORMAT_DATETIME, set TOKEN_BOT_TELEGRAM with the received token by BotFather Telegram
+Edit the file[config.yml](https://github.com/lukeSkywallk/cryptocoin-notifications/blob/master/config.yml) and set secret_coin_market_cap and other parameters, like job_running_minutes_interval, threshold_alert_drop_one_day, threshold_alert_drop_one_hour, coins and timezone
 
 ## Usage
 

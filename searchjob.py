@@ -1,40 +1,43 @@
 import coinmarket
-import constants
+import config
 from datetime import date, datetime
 import dateutils
 import telegram_send
 
 def job():
-  print('Rodando em: %s' %(dateutils
-    .get_now_datetime_formatted(constants.DEFAULT_TIMEZONE, constants.FORMAT_DATETIME)))
+  
+  time_now = dateutils.get_now_datetime_formatted(
+    config.config_file['parameters']['timezone'],
+    config.config_file['parameters']['format_datetime'])
+  
+  print('Running: %s' %(time_now))
 
   response_coins = coinmarket.get_data_coins_list()
 
   for coin in response_coins['data']:
+    
     coin_symbol = coin['symbol']
-    if (coin_symbol in constants.COINS or 'ALL' in constants.COINS):
+    config_coins = config.config_file['parameters']['coins']
 
-      coin_name = coin['name']
-      coin_price = coin['quote']['USD']['price']
+    if (coin_symbol in config_coins or 'ALL' in config_coins):
 
       change_one_hour = coin['quote']['USD']['percent_change_1h']
       change_one_day = coin['quote']['USD']['percent_change_24h']
+      
+      threshold_alert_drop_one_day = (config
+        .config_file['constants']['threshold_alert_drop_one_day'])
+      
+      threshold_alert_drop_one_hour = (config
+        .config_file['constants']['threshold_alert_drop_one_hour'])
+      
+      if (change_one_day <= threshold_alert_drop_one_day 
+          or change_one_hour <= threshold_alert_drop_one_hour):
+        
+        coin_name = coin['name']
+        coin_price = coin['quote']['USD']['price']
 
-      if change_one_hour > 0:
-        dynamic_text_change_one_hour = constants.TEXT_HIGH
-      else:
-        dynamic_text_change_one_hour = constants.TEXT_LOW
-
-      if change_one_day > 0:
-        dynamic_text_change_one_day = constants.TEXT_HIGH
-      else:
-        dynamic_text_change_one_day = constants.TEXT_LOW
-
-      if (change_one_day <= constants.THRESHOLD_DROP_ONE_DAY or change_one_hour <= constants.THRESHOLD_DROP_ONE_HOUR):
-
-        message = constants.DEFAULT_NOTIFICATION_MESSAGE %(coin_name, coin_symbol, coin_price,
-          dynamic_text_change_one_hour, change_one_hour, dynamic_text_change_one_day,
-          change_one_day, dateutils.get_now_datetime_formatted(constants.DEFAULT_TIMEZONE, constants.FORMAT_DATETIME))
+        message = "%s(%s): U$: %.2f\n\nLAST HOUR DROP: %.2f%%\n\nLAST DAY DROP: %.2f%%\n\n%s" %(
+          coin_name, coin_symbol, coin_price, change_one_hour, change_one_day, time_now) 
 
         telegram_send.send(messages=[message])
         print(message)

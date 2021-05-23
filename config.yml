@@ -1,0 +1,17 @@
+constants:
+  job_running_minutes_interval: 60
+  threshold_alert_drop_one_day: -10
+  threshold_alert_drop_one_hour: -3
+urls:
+  url_list_coin_market_api: https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest
+  mock_url_list_coin_market_api: https://run.mocky.io/v3/8525867f-1b56-4c4f-9199-3614a11f1d4f
+parameters:
+  coins:
+    - BTC
+    - ETH
+    - ADA
+    - DOT
+  format_datetime: '%H:%M:%S %d/%m/%Y'
+  timezone: America/Sao_Paulo
+secrets:
+  secret_coin_market_cap: 'INSERT YOUR API KEY HERE'
