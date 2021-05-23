@@ -14,4 +14,4 @@ parameters:
   format_datetime: '%H:%M:%S %d/%m/%Y'
   timezone: America/Sao_Paulo
 secrets:
-  secret_coin_market_cap: 'INSERT YOUR API KEY HERE'
+  secret_coin_market_cap: INSERT YOUR API KEY HERE
