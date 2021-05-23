@@ -38,9 +38,9 @@ def job():
                 coin_price = coin['quote']['USD']['price']
 
                 message = ("%s(%s): U$: %.2f\nLAST HOUR DROP: %.2f%%\n\
-                LAST DAY DROP: %.2f%%\n%s") % (
+LAST DAY DROP: %.2f%%\n%s") % (
                     coin_name, coin_symbol, coin_price, change_one_hour,
                     change_one_day, time_now)
 
-                telegram_send.send(messages=[message])
+                #telegram_send.send(messages=[message])
                 print(message)
