@@ -17,6 +17,6 @@ util = Util()
 
 def get_data_coins_list():
     return requester.get_request(
-        config.config_file['urls']['mock_url_list_coin_market_api'],
+        config.config_file['urls']['url_list_coin_market_api'],
         headers=util.default_header,
         params=util.default_parameters)
