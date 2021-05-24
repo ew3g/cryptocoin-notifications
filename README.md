@@ -26,7 +26,7 @@ And follow the instructions
     
     - Send the code/password on console to the bot
 
-Edit the file[config.yml](https://github.com/lukeSkywallk/cryptocoin-notifications/blob/master/config.yml) and set secret_coin_market_cap and other parameters, like job_running_minutes_interval, threshold_alert_drop_one_day, threshold_alert_drop_one_hour, coins and timezone
+Edit the file[config.yml](https://github.com/lukeSkywallk/cryptocoin-notifications/blob/master/config.yml) and set desired parameters, like job_running_minutes_interval, threshold_alert_drop_one_day, threshold_alert_drop_one_hour, coins and timezone
 
 ## Usage
 

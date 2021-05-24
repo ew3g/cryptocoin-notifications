@@ -3,15 +3,14 @@ constants:
   threshold_alert_drop_one_day: -10
   threshold_alert_drop_one_hour: -3
 urls:
-  url_list_coin_market_api: https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest
-  mock_url_list_coin_market_api: https://run.mocky.io/v3/8525867f-1b56-4c4f-9199-3614a11f1d4f
+  url_last_price_coin_binance_api: https://api.binance.com/api/v3/ticker/price?symbol={COIN_PAIR_SYMBOL}
+  url_ticker_coin_last_day_binance_api: https://api.binance.com/api/v3/ticker/24hr?symbol={COIN_PAIR_SYMBOL}
+  url_candles_coin_time_interval: https://api.binance.com/api/v3/klines?symbol={COIN_PAIR_SYMBOL}&interval={TIME_INTERVAL}&limit={TIME_LIMIT}
 parameters:
-  coins:
-    - BTC
-    - ETH
-    - ADA
-    - DOT
+  coin_pairs:
+    - BTCBRL
+    - ETHBRL
+    - ADABRL
+    - DOTBRL
   format_datetime: '%H:%M:%S %d/%m/%Y'
   timezone: America/Sao_Paulo
-secrets:
-  secret_coin_market_cap: INSERT YOUR API KEY HERE

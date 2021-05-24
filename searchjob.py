@@ -1,4 +1,4 @@
-import coinmarket
+import binance
 import config
 import dateutils
 import telegram_send
@@ -11,36 +11,31 @@ def job():
 
     print('Running: %s' % (time_now))
 
-    response_coins = coinmarket.get_data_coins_list()
+    coin_pairs = config.config_file['parameters']['coin_pairs']
 
-    for coin in response_coins['data']:
+    for coin_pair in coin_pairs:
+        coin_info_last_hour = binance.get_coin_info_last_hour(coin_pair)
+        coin_info_last_day = binance.get_coin_info_last_day(coin_pair)
 
-        coin_symbol = coin['symbol']
-        config_coins = config.config_file['parameters']['coins']
+        threshold_alert_drop_one_day = (config
+                                        .config_file['constants']
+                                        ['threshold_alert_drop_one_day'])
 
-        if (coin_symbol in config_coins or 'ALL' in config_coins):
+        threshold_alert_drop_one_hour = (config
+                                         .config_file['constants']
+                                         ['threshold_alert_drop_one_hour'])
 
-            change_one_hour = coin['quote']['USD']['percent_change_1h']
-            change_one_day = coin['quote']['USD']['percent_change_24h']
+        if(coin_info_last_day.variation <= threshold_alert_drop_one_day
+           or coin_info_last_hour.variation <= threshold_alert_drop_one_hour):
 
-            threshold_alert_drop_one_day = (config
-                                            .config_file['constants']
-                                            ['threshold_alert_drop_one_day'])
-
-            threshold_alert_drop_one_hour = (config
-                                             .config_file['constants']
-                                             ['threshold_alert_drop_one_hour'])
-
-            if (change_one_day <= threshold_alert_drop_one_day
-                    or change_one_hour <= threshold_alert_drop_one_hour):
-
-                coin_name = coin['name']
-                coin_price = coin['quote']['USD']['price']
-
-                message = ("%s(%s): U$: %.2f\nLAST HOUR: %.2f%%\n\
+            message = ("%s: %.2f %s\nLAST HOUR: %.2f%%\n\
 LAST DAY: %.2f%%\n%s") % (
-                    coin_name, coin_symbol, coin_price, change_one_hour,
-                    change_one_day, time_now)
+                coin_info_last_day.symbol,
+                coin_info_last_day.bid_fiat_price,
+                coin_info_last_day.converted_fiat_symbol,
+                coin_info_last_hour.variation,
+                coin_info_last_day.variation,
+                time_now)
 
-                telegram_send.send(messages=[message])
-                print(message)
+            telegram_send.send(messages=[message])
+            print(message)
