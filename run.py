@@ -4,7 +4,11 @@ import config
 import time
 import schedule
 import searchjob
+import exithandler
+import atexit
 
+
+atexit.register(exithandler.exit_handler)
 searchjob.job()
 
 schedule.every(
